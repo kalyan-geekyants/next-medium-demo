@@ -14,9 +14,11 @@ import {
 } from "@gluestack-ui/themed";
 import { ReactNode, useState } from "react";
 import LoginModal from "../login";
+import Compose from "../compose/Compose";
 
 const Navigation = () => {
-  const [showModal, setShowModal] = useState(false);
+  const [showLoginModal, setShowLoginModal] = useState(false);
+  const [showComposeModal,setShowComposeModal] = useState(false);
   return (
     <Box
       //   style={{
@@ -57,13 +59,15 @@ const Navigation = () => {
         </Input>
       </CustomBox>
       <CustomBox>
-        <CustomBox>
-          <InputIcon as={EditIcon} size="lg" color="#6B6B6B" />{" "}
-          <p style={{ fontSize: "14px", color: "#6B6B6B", marginLeft: 8 }}>
-            Write
-          </p>
-        </CustomBox>
-        <InputIcon as={BellIcon} size="lg" color="#6B6B6B" ml={30}/>{" "}
+        <div onClick={() => setShowComposeModal(true)}>
+          <CustomBox>
+            <InputIcon as={EditIcon} size="lg" color="#6B6B6B" />{" "}
+            <p style={{ fontSize: "14px", color: "#6B6B6B", marginLeft: 8 }}>
+              Write
+            </p>
+          </CustomBox>
+        </div>
+        <InputIcon as={BellIcon} size="lg" color="#6B6B6B" ml={30} />{" "}
         <Avatar bgColor="#00579B" size="sm" borderRadius="$full" ml={30}>
           <AvatarFallbackText sx={{ _light: { color: "#fff" } }}>
             Kalyan
@@ -75,13 +79,14 @@ const Navigation = () => {
           borderRadius={"$full"}
           variant="solid"
           action="default"
-          onPress={() => setShowModal(true)}
+          onPress={() => setShowLoginModal(true)}
           ml={30}
         >
           Get started
         </Button>
       </CustomBox>
-      <LoginModal showModal={showModal} setShowModal={setShowModal} />
+      <LoginModal showModal={showLoginModal} setShowModal={setShowLoginModal} />
+      <Compose showModal={showComposeModal} setShowModal={setShowComposeModal} />
     </Box>
   );
 };
