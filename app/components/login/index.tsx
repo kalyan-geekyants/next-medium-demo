@@ -18,6 +18,7 @@ import { Button } from "@gluestack-ui/themed";
 import { InputField } from "@gluestack-ui/themed";
 import { Input } from "@gluestack-ui/themed";
 import { FormControl } from "@gluestack-ui/themed";
+import { useGlobalContext } from "@/app/context/store";
 interface Props {
   showModal: boolean;
   setShowModal: (showModal: boolean) => void;
@@ -25,6 +26,13 @@ interface Props {
 
 const LoginModal = ({ showModal, setShowModal }: Props) => {
   const [userName, setUserName] = useState("");
+  const { userID, setUserID } = useGlobalContext();
+
+  const handleSubmission = () => {
+    localStorage.setItem("userID", userName);
+    setUserID(userName);
+    setShowModal(false);
+  };
   return (
     <Modal
       isOpen={showModal}
@@ -58,7 +66,7 @@ const LoginModal = ({ showModal, setShowModal }: Props) => {
               <InputField
                 placeholder="User name"
                 value={userName}
-                onChange={(e) => setUserName(e.target.value)}
+                onChange={(e: any) => setUserName(e.target.value)}
               />
             </Input>
             <FormControlError>
@@ -67,7 +75,7 @@ const LoginModal = ({ showModal, setShowModal }: Props) => {
               </FormControlErrorText>
             </FormControlError>
             <Button
-              sx={{ color: "#fff" }}
+              sx={{ color: "#fff", _light: { bgColor: "#000" } }}
               variant="solid"
               bgColor="#000"
               action="secondary"
@@ -75,8 +83,9 @@ const LoginModal = ({ showModal, setShowModal }: Props) => {
               size="lg"
               type="submit"
               borderRadius={"$full"}
-              disabled={userName.length < 4}
-              onPress={() => console.log(userName)}
+              isDisabled={userName.length < 4}
+              onPress={handleSubmission}
+              
             >
               <ButtonText>Login</ButtonText>
             </Button>

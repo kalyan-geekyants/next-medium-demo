@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import {
   Avatar,
@@ -15,10 +16,18 @@ import {
 import { ReactNode, useState } from "react";
 import LoginModal from "../login";
 import Compose from "../compose/Compose";
+import { useGlobalContext } from "@/app/context/store";
+import Link from "next/link";
 
 const Navigation = () => {
   const [showLoginModal, setShowLoginModal] = useState(false);
-  const [showComposeModal,setShowComposeModal] = useState(false);
+  const [showComposeModal, setShowComposeModal] = useState(false);
+  const { userID, setUserID } = useGlobalContext();
+
+  const logout = () => {
+    localStorage.removeItem("userID");
+    setUserID("");
+  };
   return (
     <Box
       //   style={{
@@ -39,59 +48,77 @@ const Navigation = () => {
       alignItems="center"
     >
       <CustomBox>
+        <Link href="/">
         <Image
           alt="logo"
           src="/assets/medium_icon.png"
           width={40}
           height={40}
         />
-        <Input
-          borderRadius={"$full"}
-          size="sm"
-          ml={20}
-          bgColor="#F9F9F9"
-          borderWidth={0}
-        >
-          <InputSlot pl="$3">
-            <InputIcon as={SearchIcon} size="lg" />
-          </InputSlot>
-          <InputField placeholder="Search" />
-        </Input>
+        </Link>
+        {userID && (
+          <Input
+            borderRadius={"$full"}
+            size="sm"
+            ml={20}
+            bgColor="#F9F9F9"
+            borderWidth={0}
+          >
+            <InputSlot pl="$3">
+              <InputIcon as={SearchIcon} size="lg" />
+            </InputSlot>
+            <InputField placeholder="Search" />
+          </Input>
+        )}
       </CustomBox>
       <CustomBox>
-        <div onClick={() => setShowComposeModal(true)}>
-          <CustomBox>
-            <InputIcon as={EditIcon} size="lg" color="#6B6B6B" />{" "}
-            <p style={{ fontSize: "14px", color: "#6B6B6B", marginLeft: 8 }}>
-              Write
-            </p>
-          </CustomBox>
-        </div>
-        <InputIcon as={BellIcon} size="lg" color="#6B6B6B" ml={30} />{" "}
-        <Avatar bgColor="#00579B" size="sm" borderRadius="$full" ml={30}>
-          <AvatarFallbackText sx={{ _light: { color: "#fff" } }}>
-            Kalyan
-          </AvatarFallbackText>
-        </Avatar>
-        <Button
-          sx={{ bgColor: "#000000", color: "#FFFFFF" }}
-          size="md"
-          borderRadius={"$full"}
-          variant="solid"
-          action="default"
-          onPress={() => setShowLoginModal(true)}
-          ml={30}
-        >
-          Get started
-        </Button>
+        {userID && (
+          <>
+            {" "}
+            <div onClick={() => setShowComposeModal(true)}>
+              <CustomBox>
+                <InputIcon as={EditIcon} size="lg" color="#6B6B6B" />{" "}
+                <p
+                  style={{ fontSize: "14px", color: "#6B6B6B", marginLeft: 8 }}
+                >
+                  Write
+                </p>
+              </CustomBox>
+            </div>
+            <InputIcon as={BellIcon} size="lg" color="#6B6B6B" ml={30} />{" "}
+            <div onClick={logout} style={{ cursor: "pointer" }}>
+              <Avatar bgColor="#00579B" size="sm" borderRadius="$full" ml={30}>
+                <AvatarFallbackText sx={{ _light: { color: "#fff" } }}>
+                  {userID}
+                </AvatarFallbackText>
+              </Avatar>
+            </div>
+          </>
+        )}
+        {!userID && (
+          <Button
+            sx={{ bgColor: "#000000", color: "#FFFFFF" }}
+            size="md"
+            borderRadius={"$full"}
+            variant="solid"
+            action="default"
+            onPress={() => setShowLoginModal(true)}
+            ml={30}
+          >
+            Get started
+          </Button>
+        )}
       </CustomBox>
       <LoginModal showModal={showLoginModal} setShowModal={setShowLoginModal} />
-      <Compose showModal={showComposeModal} setShowModal={setShowComposeModal} />
+      <Compose
+        showModal={showComposeModal}
+        setShowModal={setShowComposeModal}
+      />
     </Box>
   );
 };
 
-export const CustomBox = ({ children }: { children: ReactNode }) => (
+const CustomBox = ({ children }: { children: ReactNode }) => (
   <Box display="flex" flexDirection="row" alignItems="center">
     {children}
   </Box>

@@ -1,3 +1,4 @@
+import { useGlobalContext } from "@/app/context/store";
 import {
   Box,
   InputField,
@@ -33,10 +34,30 @@ const Compose = ({ showModal, setShowModal }: Props) => {
   const [description, setDescription] = useState("");
   const [selectedImage, setSelectedImage] = useState<any>(null);
   const [selectedFile, setSelectedFile] = useState<any>(null);
+  const { setBlogs, blogs, userID } = useGlobalContext();
 
   const removeFile = () => {
     setSelectedFile(null);
     setSelectedImage(null);
+  };
+
+  const clearForm = () => {
+    setTitle("");
+    setDescription("");
+    removeFile();
+  };
+
+  const handleSumbit = () => {
+    const newBlog = {
+      title,
+      description,
+      localImage: selectedImage,
+      name: userID,
+      tag: "Sample",
+      slug: title.toLowerCase().split(" ").join("-"),
+    };
+    setBlogs([newBlog, ...blogs]);
+    setShowModal(false);
   };
   return (
     <Modal
@@ -70,7 +91,10 @@ const Compose = ({ showModal, setShowModal }: Props) => {
               borderColor="#F5F5F5"
               bgColor="#F5F5F5"
             >
-              <InputField placeholder="Title" />
+              <InputField
+                placeholder="Title"
+                onChange={(e: any) => setTitle(e.target.value)}
+              />
             </Input>
             <Textarea
               size="md"
@@ -81,7 +105,10 @@ const Compose = ({ showModal, setShowModal }: Props) => {
               borderColor="#F5F5F5"
               bgColor="#F5F5F5"
             >
-              <TextareaInput placeholder="Tell your story..." />
+              <TextareaInput
+                placeholder="Tell your story..."
+                onChange={(e: any) => setDescription(e.target.value)}
+              />
             </Textarea>
 
             <Box mt={10}>
@@ -112,43 +139,49 @@ const Compose = ({ showModal, setShowModal }: Props) => {
                   </div>
                 </Box>
               )}
-              <label>
-                <input
-                  style={{ display: "none" }}
-                  type="file"
-                  onChange={({ target }: any) => {
-                    setSelectedImage(URL.createObjectURL(target.files[0]));
-                    setSelectedFile(target.files[0]);
-                  }}
-                />
-                <Box
-                  height={100}
-                  borderColor="#ddd"
-                  borderWidth={2}
-                  display="flex"
-                  justifyContent="center"
-                  alignItems="center"
-                  borderStyle="dashed"
-                  alignContent="center"
-                >
-                  <AddIcon size="lg" margin={10} />
-                </Box>
-              </label>
+              {!selectedImage && (
+                <label>
+                  <input
+                    style={{ display: "none" }}
+                    type="file"
+                    onChange={({ target }: any) => {
+                      setSelectedImage(URL.createObjectURL(target.files[0]));
+                      setSelectedFile(target.files[0]);
+                    }}
+                  />
+                  <Box
+                    height={100}
+                    borderColor="#ddd"
+                    borderWidth={2}
+                    display="flex"
+                    justifyContent="center"
+                    alignItems="center"
+                    borderStyle="dashed"
+                    alignContent="center"
+                  >
+                    <AddIcon size="lg" margin={10} />
+                  </Box>
+                </label>
+              )}
             </Box>
 
             <Button
-              sx={{ color: "#fff" }}
               variant="solid"
               bgColor="#000"
               action="secondary"
               mt={10}
               size="lg"
-              type="submit"
               borderRadius={"$full"}
-              disabled={true}
-              onPress={() => console.log("clicked")}
+              onPress={handleSumbit}
+              isDisabled={
+                !title ||
+                title.length < 4 ||
+                !description ||
+                description.length < 4 ||
+                !selectedFile
+              }
             >
-              <ButtonText>Post</ButtonText>
+              <ButtonText color="#fff">Post</ButtonText>
             </Button>
           </FormControl>
         </ModalBody>
@@ -158,9 +191,7 @@ const Compose = ({ showModal, setShowModal }: Props) => {
             variant="outline"
             size="sm"
             action="secondary"
-            onPress={() => {
-              setShowModal(false);
-            }}
+            onPress={handleSumbit}
           >
             <ButtonText>Cancel</ButtonText>
           </Button>

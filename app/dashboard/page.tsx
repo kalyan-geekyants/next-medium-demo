@@ -5,9 +5,24 @@ import StafPicks from "../components/stafpick/StaffPick";
 import Tags from "../components/tags/Tags";
 import Blogs from "../components/blogs/Blogs";
 import WhoToFollow from "../components/whoToFollow/WhoToFollow";
-import {blogs, whoToFollow,staffPicks, recommendedTopics } from "../../data/data.json";
+import {
+  whoToFollow,
+  staffPicks,
+  recommendedTopics,
+} from "../../data/data.json";
+import { useGlobalContext } from "../context/store";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 const Dashboard = () => {
+  const { blogs, userID } = useGlobalContext();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (userID === "") {
+      router.push("/");
+    }
+  }, [userID]);
   return (
     <main>
       <Navigation />
@@ -36,7 +51,7 @@ const Dashboard = () => {
           <br />
           <br />
           <Heading title="Who to follow" />
-          <WhoToFollow whoToFollow={whoToFollow}/>
+          <WhoToFollow whoToFollow={whoToFollow} />
         </Box>
       </Box>
     </main>

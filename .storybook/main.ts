@@ -11,6 +11,21 @@ const config: StorybookConfig = {
     "@storybook/addon-onboarding",
     "@storybook/addon-interactions",
   ],
+  webpackFinal: async (config, { configType }) => {
+    config.module.rules.push({
+      test: /\.(js|ts|tsx)$/,
+      // include: [path.resolve('../../', 'node_modules/@gluestack-style/react')],
+      use: "babel-loader",
+      include: /node_modules/,
+      type: 'javascript/auto',
+    });
+    // config.module.rules.push({
+    //   test: /\.mjs$/,
+    //   include: /node_modules/,
+    //   type: 'javascript/auto',
+    // });
+    return config;
+  },
   framework: {
     name: "@storybook/nextjs",
     options: {},
