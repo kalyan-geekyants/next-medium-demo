@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import { Providers } from "./providers";
 import StyledJsxRegistry from "./registry";
 import { GlobalContextProvider } from "./context/store";
+// import Navigation from "./components/navigation";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,7 +22,10 @@ export default function RootLayout({
       <body className={inter.className}>
         <Providers>
           <StyledJsxRegistry>
-            <GlobalContextProvider>{children}</GlobalContextProvider>
+            <GlobalContextProvider>
+            {/* <Navigation /> */}
+              {children}
+              </GlobalContextProvider>
           </StyledJsxRegistry>
         </Providers>
       </body>

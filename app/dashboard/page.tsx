@@ -1,6 +1,5 @@
 "use client";
 import { Box } from "@gluestack-ui/themed";
-import Navigation from "../components/navigation";
 import StafPicks from "../components/stafpick/StaffPick";
 import Tags from "../components/tags/Tags";
 import Blogs from "../components/blogs/Blogs";
@@ -13,6 +12,7 @@ import {
 import { useGlobalContext } from "../context/store";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
+import Navigation from "../components/navigation";
 
 const Dashboard = () => {
   const { blogs, userID } = useGlobalContext();

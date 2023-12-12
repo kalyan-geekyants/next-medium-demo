@@ -7,6 +7,7 @@ import {
 } from "@/app/context/store";
 import { useEffect } from "react";
 
+
 interface BlogDetailsProps {
   params: {
     slug: string;
@@ -29,7 +30,7 @@ const Blog = ({ params: { slug } }: BlogDetailsProps) => {
 
   return (
     <main>
-      <Navigation />
+      <Navigation/>
       {!blogDetails ? (
         <div
           style={{

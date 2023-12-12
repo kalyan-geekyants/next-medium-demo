@@ -1,4 +1,4 @@
-import type { StorybookConfig } from "@storybook/nextjs";
+import type { StorybookConfig } from "@storybook/react-webpack5";
 
 const config: StorybookConfig = {
   stories: [
@@ -14,21 +14,18 @@ const config: StorybookConfig = {
   webpackFinal: async (config, { configType }) => {
     config.module.rules.push({
       test: /\.(js|ts|tsx)$/,
-      // include: [path.resolve('../../', 'node_modules/@gluestack-style/react')],
+      include: /node_modules\/@storybook/,
       use: "babel-loader",
-      include: /node_modules/,
-      type: 'javascript/auto',
     });
-    // config.module.rules.push({
-    //   test: /\.mjs$/,
-    //   include: /node_modules/,
-    //   type: 'javascript/auto',
-    // });
     return config;
   },
   framework: {
-    name: "@storybook/nextjs",
-    options: {},
+    name: "@storybook/react-webpack5",
+    options: {
+      builder: {
+        useSWC: true,
+      },
+    },
   },
   docs: {
     autodocs: "tag",

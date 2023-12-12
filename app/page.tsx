@@ -1,10 +1,10 @@
 "use client";
 import { useEffect } from "react";
 import { useGlobalContext } from "./context/store";
-import Navigation from "./components/navigation";
 import { useRouter } from "next/navigation";
 import { blogs } from "../data/data.json";
 import { Box } from "@gluestack-ui/themed";
+import Navigation from "./components/navigation";
 
 const Home = () => {
   const { userID, setUserID, setBlogs } = useGlobalContext();
@@ -20,7 +20,6 @@ const Home = () => {
       }
     }
   }, [userID]);
-  console.log("This is userId", userID);
   return (
     <main>
       <Navigation />

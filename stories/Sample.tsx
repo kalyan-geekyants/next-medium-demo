@@ -1,14 +1,12 @@
-import React from 'react'
+import React from 'react';
 
-interface SampleProps {
-    title: string;
-    bgColor?: string;
-    color?: string;
+type Props = {
+    message: string;
 }
 
-const Sample = ({title,bgColor, color, ...props }: SampleProps) => {
+const Sample = ({message}: Props) => {
   return (
-    <div style={{backgroundColor: `${bgColor}`,color:`${color}`, width: 'auto'}}>{title}</div>
+    <div>{message}</div>
   )
 }
 

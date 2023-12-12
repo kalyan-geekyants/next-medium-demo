@@ -12,6 +12,10 @@ import {
   ArrowUpIcon,
   AvatarFallbackText,
 } from "@gluestack-ui/themed";
+import { PiHandsClappingThin } from "react-icons/pi";
+import { CiSaveDown2, CiShare1 } from "react-icons/ci";
+import { BiDotsHorizontalRounded } from "react-icons/bi";
+import { BsPlayCircle } from "react-icons/bs";
 import styles from "./BlogDetails.module.css";
 import { ReactNode } from "react";
 import Image from "next/image";
@@ -99,7 +103,7 @@ const InteractiveIcons = () => (
       justifyContent="space-between"
     >
       <CustomBox>
-        <InputIcon as={ArrowUpIcon} size="lg" color="#6B6B6B" />{" "}
+        <PiHandsClappingThin color="#6B6B6B" fontSize={20} />{" "}
         <p style={{ fontSize: "14px", color: "#6B6B6B", marginLeft: 8 }}>465</p>
       </CustomBox>
       <CustomBox>
@@ -115,10 +119,10 @@ const InteractiveIcons = () => (
       width={200}
       justifyContent="space-between"
     >
-      <InputIcon as={AddIcon} size="lg" color="#6B6B6B" />
-      <InputIcon as={PlayIcon} size="lg" color="#6B6B6B" />{" "}
-      <InputIcon as={ShareIcon} size="lg" color="#6B6B6B" />{" "}
-      <InputIcon as={ThreeDotsIcon} size="lg" color="#6B6B6B" />
+      <CiSaveDown2 color="#6B6B6B" fontSize={20} />
+      <BsPlayCircle color="#6B6B6B" fontSize={20} />
+      <CiShare1 color="#6B6B6B" fontSize={20} />
+      <BiDotsHorizontalRounded color="#6B6B6B" fontSize={20} />
     </Box>
   </div>
 );
