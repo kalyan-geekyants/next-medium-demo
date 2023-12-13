@@ -4,7 +4,6 @@ import Blog from "./Blog";
 
 const Blogs = ({ blogs }: { blogs: any[] }) => {
   const { userID } = useGlobalContext();
-  console.log("Blogs", blogs);
   return (
     <Box>
       {blogs.map((blog: any, index: number) => (

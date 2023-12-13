@@ -12,12 +12,14 @@ import {
   AvatarFallbackText,
   EditIcon,
   BellIcon,
+  ButtonText,
 } from "@gluestack-ui/themed";
 import { ReactNode, useState } from "react";
 import LoginModal from "../login";
 import Compose from "../compose/Compose";
 import { useGlobalContext } from "@/app/context/store";
 import Link from "next/link";
+import styles from "./Navigation.module.css";
 
 const Navigation = () => {
   const [showLoginModal, setShowLoginModal] = useState(false);
@@ -49,12 +51,12 @@ const Navigation = () => {
     >
       <CustomBox>
         <Link href="/">
-        <Image
-          alt="logo"
-          src="/assets/medium_icon.png"
-          width={40}
-          height={40}
-        />
+          <Image
+            alt="logo"
+            src="/assets/medium_icon.png"
+            width={40}
+            height={40}
+          />
         </Link>
         {userID && (
           <Input
@@ -78,15 +80,11 @@ const Navigation = () => {
             <div onClick={() => setShowComposeModal(true)}>
               <CustomBox>
                 <InputIcon as={EditIcon} size="lg" color="#6B6B6B" />{" "}
-                <p
-                  style={{ fontSize: "14px", color: "#6B6B6B", marginLeft: 8 }}
-                >
-                  Write
-                </p>
+                <p className={styles.write_text}>Write</p>
               </CustomBox>
             </div>
             <InputIcon as={BellIcon} size="lg" color="#6B6B6B" ml={30} />{" "}
-            <div onClick={logout} style={{ cursor: "pointer" }}>
+            <div onClick={logout} className={styles.avatar}>
               <Avatar bgColor="#00579B" size="sm" borderRadius="$full" ml={30}>
                 <AvatarFallbackText sx={{ _light: { color: "#fff" } }}>
                   {userID}
@@ -97,7 +95,7 @@ const Navigation = () => {
         )}
         {!userID && (
           <Button
-            sx={{ bgColor: "#000000", color: "#FFFFFF" }}
+            bgColor="#000000"
             size="md"
             borderRadius={"$full"}
             variant="solid"
@@ -105,7 +103,9 @@ const Navigation = () => {
             onPress={() => setShowLoginModal(true)}
             ml={30}
           >
-            Get started
+            <ButtonText fontWeight="200" color="#FFFFFF">
+              Get started
+            </ButtonText>
           </Button>
         )}
       </CustomBox>

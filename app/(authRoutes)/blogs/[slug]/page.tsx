@@ -1,12 +1,13 @@
 "use client";
 import BlogDetails from "@/app/components/blogDetails/BlogDetails";
-import Navigation from "@/app/components/navigation";
+import Navigation from "@/app/components/navigation/Navigation";
 import {
   BlogDetails as BlogDetailsType,
   useGlobalContext,
 } from "@/app/context/store";
-import { useEffect } from "react";
-
+import { useEffect, useState } from "react";
+import { blogs as allBlogs } from "@/data/data.json";
+import { useRouter } from "next/navigation";
 
 interface BlogDetailsProps {
   params: {
@@ -16,21 +17,29 @@ interface BlogDetailsProps {
 
 const Blog = ({ params: { slug } }: BlogDetailsProps) => {
   const { blogs, setBlogs, userID, setUserID } = useGlobalContext();
-  const blogDetails: BlogDetailsType = blogs.find((blog) => blog.slug === slug);
+  const [blogDetails, setBlogDetails] = useState<BlogDetailsType | null>(null);
+  const router = useRouter();
+  useEffect(() => {
+    const blog = blogs.find((blog) => blog.slug === slug);
+    setBlogDetails(blog);
+  }, [blogs]);
   useEffect(() => {
     if (userID !== "") {
-      setBlogs(blogs);
+      setBlogs(allBlogs);
     } else {
       const id = localStorage.getItem("userID");
       if (id) {
         setUserID(id);
+        setBlogs(allBlogs);
+      } else {
+        router.push("/");
       }
     }
   }, [userID]);
 
   return (
     <main>
-      <Navigation/>
+      <Navigation />
       {!blogDetails ? (
         <div
           style={{

@@ -2,18 +2,13 @@ import {
   Avatar,
   AvatarImage,
   Box,
-  EditIcon,
   InputIcon,
-  AddIcon,
-  ThreeDotsIcon,
-  ShareIcon,
   MessageCircleIcon,
-  PlayIcon,
-  ArrowUpIcon,
   AvatarFallbackText,
 } from "@gluestack-ui/themed";
 import { PiHandsClappingThin } from "react-icons/pi";
-import { CiSaveDown2, CiShare1 } from "react-icons/ci";
+import { CiShare1 } from "react-icons/ci";
+import { MdOutlineBookmarkAdd } from "react-icons/md";
 import { BiDotsHorizontalRounded } from "react-icons/bi";
 import { BsPlayCircle } from "react-icons/bs";
 import styles from "./BlogDetails.module.css";
@@ -119,7 +114,7 @@ const InteractiveIcons = () => (
       width={200}
       justifyContent="space-between"
     >
-      <CiSaveDown2 color="#6B6B6B" fontSize={20} />
+      <MdOutlineBookmarkAdd color="#6B6B6B" fontSize={20} />
       <BsPlayCircle color="#6B6B6B" fontSize={20} />
       <CiShare1 color="#6B6B6B" fontSize={20} />
       <BiDotsHorizontalRounded color="#6B6B6B" fontSize={20} />

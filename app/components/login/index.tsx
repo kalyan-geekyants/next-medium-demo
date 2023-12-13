@@ -75,19 +75,16 @@ const LoginModal = ({ showModal, setShowModal }: Props) => {
               </FormControlErrorText>
             </FormControlError>
             <Button
-              sx={{ color: "#fff", _light: { bgColor: "#000" } }}
               variant="solid"
               bgColor="#000"
               action="secondary"
               mt={10}
               size="lg"
-              type="submit"
               borderRadius={"$full"}
               isDisabled={userName.length < 4}
               onPress={handleSubmission}
-              
             >
-              <ButtonText>Login</ButtonText>
+              <ButtonText color="#fff">Login</ButtonText>
             </Button>
           </FormControl>
         </ModalBody>

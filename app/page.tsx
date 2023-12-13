@@ -4,22 +4,23 @@ import { useGlobalContext } from "./context/store";
 import { useRouter } from "next/navigation";
 import { blogs } from "../data/data.json";
 import { Box } from "@gluestack-ui/themed";
-import Navigation from "./components/navigation";
+import Navigation from "./components/navigation/Navigation";
+import withAuthHOC from "./hoc/withAuthHOC";
 
 const Home = () => {
-  const { userID, setUserID, setBlogs } = useGlobalContext();
-  const router = useRouter();
-  useEffect(() => {
-    if (userID !== "") {
-      setBlogs(blogs);
-      router.push("/dashboard");
-    } else {
-      const id = localStorage.getItem("userID");
-      if (id) {
-        setUserID(id);
-      }
-    }
-  }, [userID]);
+  // const { userID, setUserID, setBlogs } = useGlobalContext();
+  // const router = useRouter();
+  // useEffect(() => {
+  //   if (userID !== "") {
+  //     setBlogs(blogs);
+  //     router.push("/dashboard");
+  //   } else {
+  //     const id = localStorage.getItem("userID");
+  //     if (id) {
+  //       setUserID(id);
+  //     }
+  //   }
+  // }, [userID]);
   return (
     <main>
       <Navigation />
@@ -28,4 +29,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default withAuthHOC(Home);
