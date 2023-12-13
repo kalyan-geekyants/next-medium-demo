@@ -1,4 +1,3 @@
-import { BlogDetails } from "@/app/context/store";
 import React from "react";
 import {
   Box,
@@ -12,6 +11,7 @@ import Link from "next/link";
 import { IoIosRemoveCircleOutline } from "react-icons/io";
 import { BiDotsHorizontalRounded } from "react-icons/bi";
 import { MdOutlineBookmarkAdd } from "react-icons/md";
+import { BlogDetails } from "@/app/types/globalTypes";
 
 interface BlogProps extends BlogDetails {
   userID: string;

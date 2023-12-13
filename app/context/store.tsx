@@ -6,16 +6,7 @@ import {
   SetStateAction,
   useState,
 } from "react";
-
-export interface BlogDetails {
-  uri?: string;
-  title: string;
-  description: string;
-  tag?: string;
-  localImage?: string;
-  name?: string;
-  slug?: string;
-}
+import { BlogDetails } from "../types/globalTypes";
 
 interface ContextProps {
   userID: string;

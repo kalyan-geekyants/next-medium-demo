@@ -1,0 +1,24 @@
+import { Avatar, AvatarImage, Box } from "@gluestack-ui/themed";
+import styles from "./StaffPick.module.css";
+import { StarPick } from "@/app/types/globalTypes";
+const StarPick = ({ uri, name, tagLine }: StarPick) => {
+  return (
+    <Box display="flex" mb={15}>
+      <Box display="flex" flexDirection="row" alignItems="center" mb={5}>
+        <Avatar size="sm" bgColor="#fff">
+          <AvatarImage
+            source={{
+              uri: uri,
+            }}
+            sx={{ width: 28, height: 28, bgColor: "#fff" }}
+            alt="author"
+          />
+        </Avatar>
+        <p className={styles.staff_pick_name}>{name}</p>
+      </Box>
+      <h2 className={styles.staff_pick_heading}>{tagLine}</h2>
+    </Box>
+  );
+};
+
+export default StarPick;

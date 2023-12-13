@@ -1,10 +1,8 @@
 "use client";
 import BlogDetails from "@/app/components/blogDetails/BlogDetails";
 import Navigation from "@/app/components/navigation/Navigation";
-import {
-  BlogDetails as BlogDetailsType,
-  useGlobalContext,
-} from "@/app/context/store";
+import { useGlobalContext } from "@/app/context/store";
+import { BlogDetails as BlogDetailsType } from "@/app/types/globalTypes";
 import { useEffect, useState } from "react";
 import { blogs as allBlogs } from "@/data/data.json";
 import { useRouter } from "next/navigation";

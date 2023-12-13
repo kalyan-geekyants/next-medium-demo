@@ -14,7 +14,8 @@ import { BsPlayCircle } from "react-icons/bs";
 import styles from "./BlogDetails.module.css";
 import { ReactNode } from "react";
 import Image from "next/image";
-import { BlogDetails, useGlobalContext } from "@/app/context/store";
+import { useGlobalContext } from "@/app/context/store";
+import { BlogDetails } from "@/app/types/globalTypes";
 // const uri =
 //   "https://images.unsplash.com/photo-1599566150163-29194dcaad36?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80";
 

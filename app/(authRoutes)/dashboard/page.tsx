@@ -1,6 +1,6 @@
 "use client";
 import { Box } from "@gluestack-ui/themed";
-import StafPicks from "../../components/stafpick/StaffPick";
+import StafPicks from "../../components/stafpicks/StaffPicks";
 import Tags from "../../components/tags/Tags";
 import Blogs from "../../components/blogs/Blogs";
 import WhoToFollow from "../../components/whoToFollow/WhoToFollow";

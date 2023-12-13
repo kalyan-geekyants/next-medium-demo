@@ -8,23 +8,19 @@ import Navigation from "./components/navigation/Navigation";
 import withAuthHOC from "./hoc/withAuthHOC";
 
 const Home = () => {
-  // const { userID, setUserID, setBlogs } = useGlobalContext();
-  // const router = useRouter();
-  // useEffect(() => {
-  //   if (userID !== "") {
-  //     setBlogs(blogs);
-  //     router.push("/dashboard");
-  //   } else {
-  //     const id = localStorage.getItem("userID");
-  //     if (id) {
-  //       setUserID(id);
-  //     }
-  //   }
-  // }, [userID]);
   return (
     <main>
       <Navigation />
-      <Box display="flex" flex={1} justifyContent="center" alignItems="center" width={"100%"} height={"90vh"}><h1>Medium</h1></Box>
+      <Box
+        display="flex"
+        flex={1}
+        justifyContent="center"
+        alignItems="center"
+        width={"100%"}
+        height={"90vh"}
+      >
+        <h1>Medium</h1>
+      </Box>
     </main>
   );
 };
