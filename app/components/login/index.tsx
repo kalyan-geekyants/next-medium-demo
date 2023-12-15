@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import {
   ButtonText,
   CloseIcon,
@@ -12,24 +12,24 @@ import {
   ModalContent,
   ModalFooter,
   ModalHeader,
-} from "@gluestack-ui/themed";
-import { Heading } from "@gluestack-ui/themed";
-import { Button } from "@gluestack-ui/themed";
-import { InputField } from "@gluestack-ui/themed";
-import { Input } from "@gluestack-ui/themed";
-import { FormControl } from "@gluestack-ui/themed";
-import { useGlobalContext } from "@/app/context/store";
+  Button,
+  Heading,
+  InputField,
+  Input,
+  FormControl,
+} from '@gluestack-ui/themed';
+import { useGlobalContext } from '@/app/context/store';
 interface Props {
   showModal: boolean;
   setShowModal: (showModal: boolean) => void;
 }
 
 const LoginModal = ({ showModal, setShowModal }: Props) => {
-  const [userName, setUserName] = useState("");
-  const { userID, setUserID } = useGlobalContext();
+  const [userName, setUserName] = useState('');
+  const { setUserID } = useGlobalContext();
 
   const handleSubmission = () => {
-    localStorage.setItem("userID", userName);
+    localStorage.setItem('userID', userName);
     setUserID(userName);
     setShowModal(false);
   };
@@ -43,7 +43,7 @@ const LoginModal = ({ showModal, setShowModal }: Props) => {
       <ModalBackdrop />
       <ModalContent>
         <ModalHeader>
-          <Heading size="lg"></Heading>
+          <Heading size="lg" />
           <ModalCloseButton>
             <Icon as={CloseIcon} />
           </ModalCloseButton>
@@ -61,7 +61,7 @@ const LoginModal = ({ showModal, setShowModal }: Props) => {
               isReadOnly={false}
               isRequired={true}
               mt={30}
-              borderRadius={"$full"}
+              borderRadius={'$full'}
             >
               <InputField
                 placeholder="User name"
@@ -75,19 +75,16 @@ const LoginModal = ({ showModal, setShowModal }: Props) => {
               </FormControlErrorText>
             </FormControlError>
             <Button
-              sx={{ color: "#fff", _light: { bgColor: "#000" } }}
               variant="solid"
               bgColor="#000"
               action="secondary"
               mt={10}
               size="lg"
-              type="submit"
-              borderRadius={"$full"}
+              borderRadius={'$full'}
               isDisabled={userName.length < 4}
               onPress={handleSubmission}
-              
             >
-              <ButtonText>Login</ButtonText>
+              <ButtonText color="#fff">Login</ButtonText>
             </Button>
           </FormControl>
         </ModalBody>

@@ -1,21 +1,22 @@
+import React from 'react';
 import {
   Avatar,
   AvatarImage,
   Box,
-  EditIcon,
   InputIcon,
-  AddIcon,
-  ThreeDotsIcon,
-  ShareIcon,
   MessageCircleIcon,
-  PlayIcon,
-  ArrowUpIcon,
   AvatarFallbackText,
-} from "@gluestack-ui/themed";
-import styles from "./BlogDetails.module.css";
-import { ReactNode } from "react";
-import Image from "next/image";
-import { BlogDetails, useGlobalContext } from "@/app/context/store";
+} from '@gluestack-ui/themed';
+import { PiHandsClappingThin } from 'react-icons/pi';
+import { CiShare1 } from 'react-icons/ci';
+import { MdOutlineBookmarkAdd } from 'react-icons/md';
+import { BiDotsHorizontalRounded } from 'react-icons/bi';
+import { BsPlayCircle } from 'react-icons/bs';
+import styles from './BlogDetails.module.css';
+import { ReactNode } from 'react';
+import Image from 'next/image';
+import { useGlobalContext } from '@/app/context/store';
+import { BlogDetails } from '@/app/types/globalTypes';
 // const uri =
 //   "https://images.unsplash.com/photo-1599566150163-29194dcaad36?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80";
 
@@ -43,13 +44,13 @@ const BlogDetails = ({
                   source={{
                     uri: uri,
                   }}
-                  sx={{ bgColor: "#fff", width: 45, height: 45 }}
+                  sx={{ bgColor: '#fff', width: 45, height: 45 }}
                   alt="author"
                 />
               </Avatar>
             ) : (
               <Avatar bgColor="#00579B" size="md" borderRadius="$full">
-                <AvatarFallbackText sx={{ _light: { color: "#fff" } }}>
+                <AvatarFallbackText sx={{ _light: { color: '#fff' } }}>
                   {userID}
                 </AvatarFallbackText>
               </Avatar>
@@ -66,7 +67,7 @@ const BlogDetails = ({
           <div className={styles.blog_image}>
             <Image
               alt="blog image"
-              src={(localImage as string) || "/assets/image.webp"}
+              src={(localImage as string) || '/assets/image.webp'}
               layout="fill"
             />
           </div>
@@ -99,12 +100,12 @@ const InteractiveIcons = () => (
       justifyContent="space-between"
     >
       <CustomBox>
-        <InputIcon as={ArrowUpIcon} size="lg" color="#6B6B6B" />{" "}
-        <p style={{ fontSize: "14px", color: "#6B6B6B", marginLeft: 8 }}>465</p>
+        <PiHandsClappingThin color="#6B6B6B" fontSize={20} />{' '}
+        <p style={{ fontSize: '14px', color: '#6B6B6B', marginLeft: 8 }}>465</p>
       </CustomBox>
       <CustomBox>
-        <InputIcon as={MessageCircleIcon} size="lg" color="#6B6B6B" />{" "}
-        <p style={{ fontSize: "14px", color: "#6B6B6B", marginLeft: 8 }}>8</p>
+        <InputIcon as={MessageCircleIcon} size="lg" color="#6B6B6B" />{' '}
+        <p style={{ fontSize: '14px', color: '#6B6B6B', marginLeft: 8 }}>8</p>
       </CustomBox>
     </Box>
     {/* Right Side icons */}
@@ -115,10 +116,10 @@ const InteractiveIcons = () => (
       width={200}
       justifyContent="space-between"
     >
-      <InputIcon as={AddIcon} size="lg" color="#6B6B6B" />
-      <InputIcon as={PlayIcon} size="lg" color="#6B6B6B" />{" "}
-      <InputIcon as={ShareIcon} size="lg" color="#6B6B6B" />{" "}
-      <InputIcon as={ThreeDotsIcon} size="lg" color="#6B6B6B" />
+      <MdOutlineBookmarkAdd color="#6B6B6B" fontSize={20} />
+      <BsPlayCircle color="#6B6B6B" fontSize={20} />
+      <CiShare1 color="#6B6B6B" fontSize={20} />
+      <BiDotsHorizontalRounded color="#6B6B6B" fontSize={20} />
     </Box>
   </div>
 );

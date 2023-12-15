@@ -34,7 +34,10 @@
   -webkit-box-orient: vertical;
   letter-spacing: 0;
 }
-
+.blog_details_contianer{
+  display: flex;
+  justify-content: space-between;
+}
 .blog_details {
   width: 70%;
 }

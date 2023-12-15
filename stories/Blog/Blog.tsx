@@ -1,21 +1,24 @@
-import React from 'react';
+import React from "react";
 import {
   Box,
   Avatar,
   AvatarImage,
   AvatarFallbackText,
-} from '@gluestack-ui/themed';
-import Image from 'next/image';
-import styles from './Blogs.module.css';
-import Link from 'next/link';
-import { IoIosRemoveCircleOutline } from 'react-icons/io';
-import { BiDotsHorizontalRounded } from 'react-icons/bi';
-import { MdOutlineBookmarkAdd } from 'react-icons/md';
-import { BlogDetails } from '@/app/types/globalTypes';
+} from "@gluestack-ui/themed";
+import Image from "next/image";
+import styles from "./Blogs.module.css";
+import Link from "next/link";
+import { IoIosRemoveCircleOutline } from "react-icons/io";
+import { BiDotsHorizontalRounded } from "react-icons/bi";
+import { MdOutlineBookmarkAdd } from "react-icons/md";
+import { BlogDetails } from "@/app/types/globalTypes";
 
 interface BlogProps extends BlogDetails {
   userID: string;
 }
+
+const imageURI =
+  "https://buffer.com/cdn-cgi/image/w=1000,fit=contain,q=90,f=auto/library/content/images/size/w1200/2023/10/free-images.jpg";
 
 const Blog = ({
   uri,
@@ -30,10 +33,11 @@ const Blog = ({
   return (
     <Box
       display="flex"
-      width={'100%'}
+      width={"100%"}
       pt={24}
-      borderBottomWidth={'$1'}
+      borderBottomWidth={"$1"}
       borderBottomColor="#f2f2f2"
+      sx={{ _web: { fontFamily: "$mono" } }}
     >
       <Box display="flex" flexDirection="row" alignItems="center" mb={5}>
         {uri ? (
@@ -42,13 +46,13 @@ const Blog = ({
               source={{
                 uri: uri,
               }}
-              sx={{ width: 28, height: 28, bgColor: '#fff' }}
+              sx={{ width: 28, height: 28, bgColor: "#fff" }}
               alt="author"
             />
           </Avatar>
         ) : (
           <Avatar bgColor="#00579B" size="sm" borderRadius="$full">
-            <AvatarFallbackText sx={{ _light: { color: '#fff' } }}>
+            <AvatarFallbackText sx={{ _light: { color: "#fff" } }}>
               {userID}
             </AvatarFallbackText>
           </Avatar>
@@ -82,7 +86,7 @@ const Blog = ({
         </div>
         <Image
           alt="blog image"
-          src={localImage ?? '/assets/image.webp'}
+          src={localImage ?? imageURI}
           width={100}
           height={100}
         />

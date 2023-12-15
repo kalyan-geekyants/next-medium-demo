@@ -1,21 +1,12 @@
-"use client";
-import {
+'use client';
+import React, {
   createContext,
   useContext,
   Dispatch,
   SetStateAction,
   useState,
-} from "react";
-
-export interface BlogDetails {
-  uri?: string;
-  title: string;
-  description: string;
-  tag?: string;
-  localImage?: string;
-  name?: string;
-  slug?: string;
-}
+} from 'react';
+import { BlogDetails } from '../types/globalTypes';
 
 interface ContextProps {
   userID: string;
@@ -25,8 +16,8 @@ interface ContextProps {
 }
 
 const GloblaContext = createContext<ContextProps>({
-  userID: "",
-  setUserID: (): string => "",
+  userID: '',
+  setUserID: (): string => '',
   blogs: [],
   setBlogs: (): BlogDetails[] => [],
 });
@@ -36,7 +27,7 @@ export const GlobalContextProvider = ({
 }: {
   children: React.ReactNode;
 }) => {
-  const [userID, setUserID] = useState("");
+  const [userID, setUserID] = useState('kanike_541');
   const [blogs, setBlogs] = useState<BlogDetails[]>([]);
   return (
     <GloblaContext.Provider value={{ userID, setUserID, blogs, setBlogs }}>

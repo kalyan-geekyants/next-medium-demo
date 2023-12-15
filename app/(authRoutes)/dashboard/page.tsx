@@ -1,28 +1,20 @@
 "use client";
 import { Box } from "@gluestack-ui/themed";
-import Navigation from "../components/navigation";
-import StafPicks from "../components/stafpick/StaffPick";
-import Tags from "../components/tags/Tags";
-import Blogs from "../components/blogs/Blogs";
-import WhoToFollow from "../components/whoToFollow/WhoToFollow";
+import StafPicks from "../../components/stafpicks/StaffPicks";
+import Tags from "../../components/tags/Tags";
+import Blogs from "../../components/blogs/Blogs";
+import WhoToFollow from "../../components/whoToFollow/WhoToFollow";
 import {
   whoToFollow,
   staffPicks,
   recommendedTopics,
-} from "../../data/data.json";
-import { useGlobalContext } from "../context/store";
-import { useEffect } from "react";
-import { useRouter } from "next/navigation";
+} from "../../../data/data.json";
+import { useGlobalContext } from "../../context/store";
+import Navigation from "../../components/navigation/Navigation";
+import withAuthHOC from "../../hoc/withAuthHOC";
 
 const Dashboard = () => {
-  const { blogs, userID } = useGlobalContext();
-  const router = useRouter();
-
-  useEffect(() => {
-    if (userID === "") {
-      router.push("/");
-    }
-  }, [userID]);
+  const { blogs } = useGlobalContext();
   return (
     <main>
       <Navigation />
@@ -32,7 +24,7 @@ const Dashboard = () => {
         width={"100%"}
         justifyContent="space-evenly"
       >
-        <Box width={"50%"} height={"100vh"} pt={50}>
+        <Box width={"50%"} pt={50}>
           <Blogs blogs={blogs} />
         </Box>
         <Box
@@ -58,7 +50,7 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default withAuthHOC(Dashboard);
 
 export const Heading = ({ title }: { title: string }) => (
   <h2
