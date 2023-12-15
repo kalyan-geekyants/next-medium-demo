@@ -23,7 +23,7 @@ const Blog = ({ params: { slug } }: BlogDetailsProps) => {
   }, [blogs]);
   useEffect(() => {
     if (userID !== "") {
-      setBlogs(allBlogs);
+      setBlogs(blogs);
     } else {
       const id = localStorage.getItem("userID");
       if (id) {
