@@ -27,7 +27,7 @@ export const GlobalContextProvider = ({
 }: {
   children: React.ReactNode;
 }) => {
-  const [userID, setUserID] = useState('kanike_541');
+  const [userID, setUserID] = useState('');
   const [blogs, setBlogs] = useState<BlogDetails[]>([]);
   return (
     <GloblaContext.Provider value={{ userID, setUserID, blogs, setBlogs }}>
