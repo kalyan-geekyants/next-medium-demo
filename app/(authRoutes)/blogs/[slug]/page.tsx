@@ -15,15 +15,11 @@ interface BlogDetailsProps {
 
 const Blog = ({ params: { slug } }: BlogDetailsProps) => {
   const { blogs, setBlogs, userID, setUserID } = useGlobalContext();
-  const [blogDetails, setBlogDetails] = useState<BlogDetailsType | null>(null);
+  const blogDetails: BlogDetailsType = blogs.find((blog) => blog.slug === slug);
   const router = useRouter();
   useEffect(() => {
-    const blog = blogs.find((blog) => blog.slug === slug);
-    setBlogDetails(blog);
-  }, [blogs]);
-  useEffect(() => {
     if (userID !== "") {
-      setBlogs(allBlogs);
+      setBlogs(blogs);
     } else {
       const id = localStorage.getItem("userID");
       if (id) {
