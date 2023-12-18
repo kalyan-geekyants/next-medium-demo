@@ -1,17 +1,17 @@
-import React from 'react';
+import React from "react";
 import {
   Box,
   Avatar,
   AvatarImage,
   AvatarFallbackText,
-} from '@gluestack-ui/themed';
-import Image from 'next/image';
-import styles from './Blogs.module.css';
-import Link from 'next/link';
-import { IoIosRemoveCircleOutline } from 'react-icons/io';
-import { BiDotsHorizontalRounded } from 'react-icons/bi';
-import { MdOutlineBookmarkAdd } from 'react-icons/md';
-import { BlogDetails } from '@/app/types/globalTypes';
+} from "@gluestack-ui/themed";
+import Image from "next/image";
+import styles from "./Blogs.module.css";
+import Link from "next/link";
+import { IoIosRemoveCircleOutline } from "react-icons/io";
+import { BiDotsHorizontalRounded } from "react-icons/bi";
+import { MdOutlineBookmarkAdd } from "react-icons/md";
+import { BlogDetails } from "@/app/types/globalTypes";
 
 interface BlogProps extends BlogDetails {
   userID: string;
@@ -30,9 +30,9 @@ const Blog = ({
   return (
     <Box
       display="flex"
-      width={'100%'}
+      width={"100%"}
       pt={24}
-      borderBottomWidth={'$1'}
+      borderBottomWidth={"$1"}
       borderBottomColor="#f2f2f2"
     >
       <Box display="flex" flexDirection="row" alignItems="center" mb={5}>
@@ -42,13 +42,13 @@ const Blog = ({
               source={{
                 uri: uri,
               }}
-              sx={{ width: 28, height: 28, bgColor: '#fff' }}
+              sx={{ width: 28, height: 28, bgColor: "#fff" }}
               alt="author"
             />
           </Avatar>
         ) : (
           <Avatar bgColor="#00579B" size="sm" borderRadius="$full">
-            <AvatarFallbackText sx={{ _light: { color: '#fff' } }}>
+            <AvatarFallbackText sx={{ _light: { color: "#fff" } }}>
               {userID}
             </AvatarFallbackText>
           </Avatar>
@@ -74,15 +74,15 @@ const Blog = ({
               width={100}
               justifyContent="space-between"
             >
-              <MdOutlineBookmarkAdd color="#6B6B6B" fontSize={20} />
-              <IoIosRemoveCircleOutline color="#6B6B6B" fontSize={20} />
-              <BiDotsHorizontalRounded color="#6B6B6B" fontSize={20} />
+              <MdOutlineBookmarkAdd color="#6B6B6B" fontSize={22} />
+              <IoIosRemoveCircleOutline color="#6B6B6B" fontSize={22} />
+              <BiDotsHorizontalRounded color="#6B6B6B" fontSize={22} />
             </Box>
           </div>
         </div>
         <Image
           alt="blog image"
-          src={localImage ?? '/assets/image.webp'}
+          src={localImage ?? "/assets/image.webp"}
           width={100}
           height={100}
         />

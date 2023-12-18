@@ -1,23 +1,30 @@
-import { useRouter } from 'next/navigation';
-import React, { useEffect } from 'react';
-import { useGlobalContext } from '../context/store';
-import { blogs } from '../../data/data.json';
+import { useRouter } from "next/navigation";
+import React, { useEffect } from "react";
+import { useGlobalContext } from "../context/store";
+import { blogs as allBlogs } from "../../data/data.json";
 
 const withAuthHOC = (WrappedComponent: any) => {
   const HocComponent = ({ ...props }) => {
-    const { userID, setUserID, setBlogs } = useGlobalContext();
+    const { userID, setUserID, setBlogs, blogs } = useGlobalContext();
     const router = useRouter();
-    useEffect(() => {
-      if (userID !== '') {
+    const setAllBlogs = () => {
+      if (blogs.length) {
         setBlogs(blogs);
-        router.push('/dashboard');
       } else {
-        const id = localStorage.getItem('userID');
+        setBlogs(allBlogs);
+      }
+    };
+    useEffect(() => {
+      if (userID !== "") {
+        setAllBlogs();
+        router.push("/dashboard");
+      } else {
+        const id = localStorage.getItem("userID");
         if (id) {
           setUserID(id);
-          setBlogs(blogs);
+          setAllBlogs();
         } else {
-          router.push('/');
+          router.push("/");
         }
       }
     }, [userID, router, setUserID, setBlogs]);
