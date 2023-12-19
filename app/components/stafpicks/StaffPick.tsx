@@ -1,17 +1,24 @@
-import React from 'react';
-import { Avatar, AvatarImage, Box } from '@gluestack-ui/themed';
-import styles from './StaffPick.module.css';
-import { StarPick } from '@/app/types/globalTypes';
+import React from "react";
+import { Avatar, AvatarImage, Box } from "@gluestack-ui/themed";
+import styles from "./StaffPick.module.css";
+import { StarPick } from "@/app/types/globalTypes";
+
+const avatarContainer = {
+  display: "flex",
+  flexDirection: "row",
+  alignItems: "center",
+  marginBottom: 5,
+};
 const StaffPick = ({ uri, name, tagLine }: StarPick) => {
   return (
-    <Box display="flex" mb={15} sx={{_web: {fontFamily: "$mono"}}}>
-      <Box display="flex" flexDirection="row" alignItems="center" mb={5}>
+    <Box display="flex" mb={15} sx={{ _web: { fontFamily: "$mono" } }}>
+      <Box {...avatarContainer}>
         <Avatar size="sm" bgColor="#fff">
           <AvatarImage
             source={{
               uri: uri,
             }}
-            sx={{ width: 28, height: 28, bgColor: '#fff' }}
+            sx={{ width: 28, height: 28, bgColor: "#fff" }}
             alt="author"
           />
         </Avatar>

@@ -1,6 +1,6 @@
-'use client';
-import Image from 'next/image';
-import React from 'react';
+"use client";
+import Image from "next/image";
+import React from "react";
 import {
   Avatar,
   Box,
@@ -15,14 +15,14 @@ import {
   BellIcon,
   ButtonText,
   Pressable,
-} from '@gluestack-ui/themed';
-import { ReactNode, useState } from 'react';
-import LoginModal from '../login';
-import Compose from '../compose/Compose';
-import { useGlobalContext } from '@/app/context/store';
+} from "@gluestack-ui/themed";
+import { ReactNode, useState } from "react";
+import LoginModal from "../login";
+import Compose from "../compose/Compose";
+import { useGlobalContext } from "@/app/context/store";
 // import Link from 'next/link';
-import styles from './Navigation.module.css';
-import { useRouter } from 'next/navigation';
+import styles from "./Navigation.module.css";
+import { useRouter } from "next/navigation";
 // import SampleModal from '../login/SampleModal';
 
 const Navigation = () => {
@@ -32,18 +32,11 @@ const Navigation = () => {
   const router = useRouter();
 
   const logout = () => {
-    localStorage.removeItem('userID');
-    setUserID('');
+    localStorage.removeItem("userID");
+    setUserID("");
   };
   return (
     <Box
-      //   style={{
-      //     padding: "0px 24px",
-      //     height: "57px",
-      //     display: "flex",
-      //     alignItems: "center",
-      //     borderBottom: "solid 1px #F2F2F2",
-      //   }}
       height={57}
       borderBottomWidth={1}
       borderBottomColor="#F2F2F2"
@@ -55,7 +48,7 @@ const Navigation = () => {
       alignItems="center"
     >
       <CustomBox>
-        <Pressable onPress={() => router.push('/')}>
+        <Pressable onPress={() => router.push("/")}>
           <Image
             alt="logo"
             src="/assets/medium_icon.png"
@@ -65,7 +58,7 @@ const Navigation = () => {
         </Pressable>
         {userID && (
           <Input
-            borderRadius={'$full'}
+            borderRadius={"$full"}
             size="sm"
             ml={20}
             bgColor="#F9F9F9"
@@ -81,17 +74,17 @@ const Navigation = () => {
       <CustomBox>
         {userID && (
           <>
-            {' '}
+            {" "}
             <Pressable onPress={() => setShowComposeModal(true)}>
               <CustomBox>
-                <InputIcon as={EditIcon} size="lg" color="#6B6B6B" />{' '}
+                <InputIcon as={EditIcon} size="lg" color="#6B6B6B" />{" "}
                 <p className={styles.write_text}>Write</p>
               </CustomBox>
             </Pressable>
-            <InputIcon as={BellIcon} size="lg" color="#6B6B6B" ml={30} />{' '}
+            <InputIcon as={BellIcon} size="lg" color="#6B6B6B" ml={30} />{" "}
             <Pressable onPress={logout}>
               <Avatar bgColor="#00579B" size="sm" borderRadius="$full" ml={30}>
-                <AvatarFallbackText sx={{ _light: { color: '#fff' } }}>
+                <AvatarFallbackText sx={{ _light: { color: "#fff" } }}>
                   {userID}
                 </AvatarFallbackText>
               </Avatar>
@@ -102,7 +95,7 @@ const Navigation = () => {
           <Button
             bgColor="#000000"
             size="md"
-            borderRadius={'$full'}
+            borderRadius={"$full"}
             variant="solid"
             action="default"
             onPress={() => setShowLoginModal(true)}

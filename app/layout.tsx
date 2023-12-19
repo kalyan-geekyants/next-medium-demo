@@ -19,6 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="gs">
       <body className={inter.className}>
+        <link rel="icon" href="/favicon.ico" />
         <GlobalContextProvider>
           <Providers>
             <StyledJsxRegistry>{children}</StyledJsxRegistry>

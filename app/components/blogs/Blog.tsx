@@ -17,6 +17,19 @@ interface BlogProps extends BlogDetails {
   userID: string;
 }
 
+const containerStyles = {
+  display: "flex",
+  width: "100%",
+  paddingTop: 24,
+  borderBottomWidth: 1,
+  borderBottomColor: "#f2f2f2",
+};
+const avatarContainerStyles = {
+  display: "flex",
+  flexDirection: "row",
+  alignItems: "center",
+  marginBottom: 5,
+};
 const Blog = ({
   uri,
   title,
@@ -28,14 +41,8 @@ const Blog = ({
   slug,
 }: BlogProps) => {
   return (
-    <Box
-      display="flex"
-      width={"100%"}
-      pt={24}
-      borderBottomWidth={"$1"}
-      borderBottomColor="#f2f2f2"
-    >
-      <Box display="flex" flexDirection="row" alignItems="center" mb={5}>
+    <Box {...containerStyles}>
+      <Box {...avatarContainerStyles}>
         {uri ? (
           <Avatar size="sm" bgColor="#fff">
             <AvatarImage

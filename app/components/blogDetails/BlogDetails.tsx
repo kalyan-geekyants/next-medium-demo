@@ -18,7 +18,13 @@ import Image from "next/image";
 import { useGlobalContext } from "@/app/context/store";
 import { BlogDetails } from "@/app/types/globalTypes";
 // const uri =
-//   "https://images.unsplash.com/photo-1599566150163-29194dcaad36?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80";
+//   "https://images.unsplash.com/photo-1599566150163-29194dcaad36?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80";\
+
+const container = {
+  display: "flex",
+  flexDirection: "row",
+  justifyContent: "center",
+};
 
 const BlogDetails = ({
   title,
@@ -29,7 +35,7 @@ const BlogDetails = ({
 }: BlogDetails) => {
   const { userID } = useGlobalContext();
   return (
-    <Box display="flex" flexDirection="row" justifyContent="center">
+    <Box {...container}>
       <div className={styles.container}>
         <div className={styles.blog_details}>
           <h1 className={styles.heading}>{title}</h1>
@@ -84,9 +90,7 @@ const BlogDetails = ({
 export default BlogDetails;
 
 const CustomBox = ({ children }: { children: ReactNode }) => (
-  <Box display="flex" flexDirection="row" alignItems="center">
-    {children}
-  </Box>
+  <Box {...container}>{children}</Box>
 );
 
 const InteractiveIcons = () => (

@@ -1,23 +1,25 @@
-import React from 'react';
-import { WhoToFollow } from '@/app/types/globalTypes';
-import { Avatar, AvatarImage, Box, Button } from '@gluestack-ui/themed';
-import styles from './WhoToFollow.module.css';
+import React from "react";
+import { WhoToFollow } from "@/app/types/globalTypes";
+import { Avatar, AvatarImage, Box, Button } from "@gluestack-ui/themed";
+import styles from "./WhoToFollow.module.css";
+
+const container = {
+  display: "flex",
+  flexDirection: "row",
+  justifyContent: "space-between",
+  paddingTop: 16,
+};
 
 const WhoToFollowCard = ({ uri, name, about }: WhoToFollow) => {
   return (
-    <Box
-      display="flex"
-      flexDirection="row"
-      justifyContent="space-between"
-      pt={16}
-    >
-      <div style={{ display: 'flex', width: '75%' }}>
+    <Box {...container}>
+      <div style={{ display: "flex", width: "75%" }}>
         <Avatar size="sm">
           <AvatarImage
             source={{
               uri: uri,
             }}
-            sx={{ width: 32, height: 32, bgColor: '#fff' }}
+            sx={{ width: 32, height: 32, bgColor: "#fff" }}
             alt="author"
           />
         </Avatar>
@@ -26,11 +28,11 @@ const WhoToFollowCard = ({ uri, name, about }: WhoToFollow) => {
           <div className={styles.about}>{about}</div>
         </div>
       </div>
-      <div style={{ display: 'flex', alignItems: 'center' }}>
+      <div style={{ display: "flex", alignItems: "center" }}>
         <Button
           size="sm"
           variant="outline"
-          borderRadius={'$full'}
+          borderRadius={"$full"}
           borderColor="#242424"
         >
           Follow

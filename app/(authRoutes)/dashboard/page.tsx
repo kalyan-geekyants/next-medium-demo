@@ -13,17 +13,19 @@ import { useGlobalContext } from "../../context/store";
 import Navigation from "../../components/navigation/Navigation";
 import withAuthHOC from "../../hoc/withAuthHOC";
 
+const dashboardContainer = {
+  display: "flex",
+  flexDirection: "row",
+  width: "100%",
+  justifyContent: "space-evenly",
+};
+
 const Dashboard = () => {
   const { blogs } = useGlobalContext();
   return (
     <main>
       <Navigation />
-      <Box
-        display="flex"
-        flexDirection="row"
-        width={"100%"}
-        justifyContent="space-evenly"
-      >
+      <Box {...dashboardContainer}>
         <Box width={"50%"} pt={50}>
           <Blogs blogs={blogs} />
         </Box>
