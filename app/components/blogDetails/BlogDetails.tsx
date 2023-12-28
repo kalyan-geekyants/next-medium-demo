@@ -90,7 +90,7 @@ const BlogDetails = ({
 export default BlogDetails;
 
 const CustomBox = ({ children }: { children: ReactNode }) => (
-  <Box {...container}>{children}</Box>
+  <Box {...container} display="flex" flexDirection="row" justifyContent="center" alignItems="center">{children}</Box>
 );
 
 const InteractiveIcons = () => (
