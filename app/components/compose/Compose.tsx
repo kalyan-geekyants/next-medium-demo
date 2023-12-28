@@ -1,5 +1,5 @@
-import { useGlobalContext } from '@/app/context/store';
-import React from 'react';
+import { useGlobalContext } from "@/app/context/store";
+import React from "react";
 import {
   Box,
   InputField,
@@ -21,9 +21,14 @@ import {
   TextareaInput,
   CloseIcon,
   InputIcon,
-} from '@gluestack-ui/themed';
-import Image from 'next/image';
-import { useState } from 'react';
+  VStack,
+  Toast,
+  useToast,
+  ToastTitle,
+  ToastDescription,
+} from "@gluestack-ui/themed";
+import Image from "next/image";
+import { useState } from "react";
 
 interface Props {
   showModal: boolean;
@@ -31,11 +36,12 @@ interface Props {
 }
 
 const Compose = ({ showModal, setShowModal }: Props) => {
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
   const [selectedImage, setSelectedImage] = useState<any>(null);
   const [selectedFile, setSelectedFile] = useState<any>(null);
   const { setBlogs, blogs, userID } = useGlobalContext();
+  const toast = useToast();
 
   const removeFile = () => {
     setSelectedFile(null);
@@ -43,8 +49,8 @@ const Compose = ({ showModal, setShowModal }: Props) => {
   };
 
   const clearForm = () => {
-    setTitle('');
-    setDescription('');
+    setTitle("");
+    setDescription("");
     removeFile();
   };
 
@@ -54,11 +60,25 @@ const Compose = ({ showModal, setShowModal }: Props) => {
       description,
       localImage: selectedImage,
       name: userID,
-      tag: 'Sample',
-      slug: title.toLowerCase().split(' ').join('-'),
+      tag: "Sample",
+      slug: title.toLowerCase().split(" ").join("-"),
     };
     setBlogs([newBlog, ...blogs]);
     setShowModal(false);
+    clearForm();
+    toast.show({
+      placement: "top",
+      render: () => {
+        return (
+          <Toast action="success">
+            <VStack space="xs">
+              <ToastTitle>Success!</ToastTitle>
+              <ToastDescription>Blog addedd successfully!</ToastDescription>
+            </VStack>
+          </Toast>
+        );
+      },
+    });
   };
   return (
     <Modal
@@ -88,7 +108,7 @@ const Compose = ({ showModal, setShowModal }: Props) => {
               isReadOnly={false}
               isRequired={true}
               mt={30}
-              borderRadius={'$full'}
+              borderRadius={"$full"}
               borderColor="#F5F5F5"
               bgColor="#F5F5F5"
             >
@@ -123,16 +143,16 @@ const Compose = ({ showModal, setShowModal }: Props) => {
                   />
                   <div
                     style={{
-                      position: 'absolute',
+                      position: "absolute",
                       right: -8,
                       top: -8,
-                      backgroundColor: '#aaa',
-                      borderRadius: '50%',
+                      backgroundColor: "#aaa",
+                      borderRadius: "50%",
                       padding: 2,
-                      display: 'flex',
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                      cursor: 'pointer',
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      cursor: "pointer",
                     }}
                     onClick={removeFile}
                   >
@@ -143,7 +163,7 @@ const Compose = ({ showModal, setShowModal }: Props) => {
               {!selectedImage && (
                 <label>
                   <input
-                    style={{ display: 'none' }}
+                    style={{ display: "none" }}
                     type="file"
                     onChange={({ target }: any) => {
                       setSelectedImage(URL.createObjectURL(target.files[0]));
@@ -172,7 +192,7 @@ const Compose = ({ showModal, setShowModal }: Props) => {
               action="secondary"
               mt={10}
               size="lg"
-              borderRadius={'$full'}
+              borderRadius={"$full"}
               onPress={handleSumbit}
               isDisabled={
                 !title ||

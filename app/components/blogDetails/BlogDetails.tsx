@@ -39,11 +39,7 @@ const BlogDetails = ({
       <div className={styles.container}>
         <div className={styles.blog_details}>
           <h1 className={styles.heading}>{title}</h1>
-          <h2 className={styles.sub_heading}>
-            Enhance Your React.js Development with Best Practices and Proven
-            Techniques
-          </h2>
-          <Box display="flex" flexDirection="row" alignItems="center">
+          <Box display="flex" flexDirection="row" alignItems="center" >
             {uri ? (
               <Avatar size="md" bgColor="#fff">
                 <AvatarImage

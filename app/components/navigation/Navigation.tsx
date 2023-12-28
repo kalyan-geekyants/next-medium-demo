@@ -15,6 +15,9 @@ import {
   BellIcon,
   ButtonText,
   Pressable,
+  Tooltip,
+  TooltipContent,
+  TooltipText,
 } from "@gluestack-ui/themed";
 import { ReactNode, useState } from "react";
 import LoginModal from "../login";
@@ -24,16 +27,24 @@ import { useGlobalContext } from "@/app/context/store";
 import styles from "./Navigation.module.css";
 import { useRouter } from "next/navigation";
 // import SampleModal from '../login/SampleModal';
+import { blogs } from "../../../data/data.json";
 
 const Navigation = () => {
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [showComposeModal, setShowComposeModal] = useState(false);
-  const { userID, setUserID } = useGlobalContext();
+  const { userID, setUserID, setBlogs } = useGlobalContext();
   const router = useRouter();
 
   const logout = () => {
     localStorage.removeItem("userID");
     setUserID("");
+  };
+
+  const filterBlogs = (e: any) => {
+    const filteredBlogs = blogs.filter((blog) => {
+      return blog.title.toLowerCase().includes(e.target.value.toLowerCase());
+    });
+    setBlogs(filteredBlogs);
   };
   return (
     <Box
@@ -67,7 +78,7 @@ const Navigation = () => {
             <InputSlot pl="$3">
               <InputIcon as={SearchIcon} size="lg" />
             </InputSlot>
-            <InputField placeholder="Search" />
+            <InputField placeholder="Search" onChange={filterBlogs} />
           </Input>
         )}
       </CustomBox>
@@ -75,7 +86,12 @@ const Navigation = () => {
         {userID && (
           <>
             {" "}
-            <Pressable onPress={() => setShowComposeModal(true)}>
+            <Pressable
+              onPress={() => {
+                setShowComposeModal(true);
+                console.log("clicked");
+              }}
+            >
               <CustomBox>
                 <InputIcon as={EditIcon} size="lg" color="#6B6B6B" />{" "}
                 <p className={styles.write_text}>Write</p>
@@ -83,11 +99,28 @@ const Navigation = () => {
             </Pressable>
             <InputIcon as={BellIcon} size="lg" color="#6B6B6B" ml={30} />{" "}
             <Pressable onPress={logout}>
-              <Avatar bgColor="#00579B" size="sm" borderRadius="$full" ml={30}>
-                <AvatarFallbackText sx={{ _light: { color: "#fff" } }}>
-                  {userID}
-                </AvatarFallbackText>
-              </Avatar>
+              <Tooltip
+                placement="bottom"
+                trigger={(triggerProps: any) => {
+                  return (
+                    <Avatar
+                      bgColor="#00579B"
+                      size="sm"
+                      borderRadius="$full"
+                      ml={30}
+                      {...triggerProps}
+                    >
+                      <AvatarFallbackText sx={{ _light: { color: "#fff" } }}>
+                        {userID}
+                      </AvatarFallbackText>
+                    </Avatar>
+                  );
+                }}
+              >
+                <TooltipContent>
+                  <TooltipText>Log Out</TooltipText>
+                </TooltipContent>
+              </Tooltip>
             </Pressable>
           </>
         )}
