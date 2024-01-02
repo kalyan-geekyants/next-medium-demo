@@ -12,6 +12,7 @@ import {
 import { useGlobalContext } from "../../context/store";
 import Navigation from "../../components/navigation/Navigation";
 import withAuthHOC from "../../hoc/withAuthHOC";
+import Heading from "@/app/components/Heading";
 
 const dashboardContainer = {
   display: "flex",
@@ -36,15 +37,8 @@ const Dashboard = () => {
           borderLeftWidth={1}
           borderLeftColor="#F2F2F2"
         >
-          <Heading title=" Staff Picks" />
           <StafPicks staffPicks={staffPicks} />
-          <br />
-          <br />
-          <Heading title="Recommended Topics" />
           <Tags tags={recommendedTopics} />
-          <br />
-          <br />
-          <Heading title="Who to follow" />
           <WhoToFollow whoToFollow={whoToFollow} />
         </Box>
       </Box>
@@ -53,16 +47,3 @@ const Dashboard = () => {
 };
 
 export default withAuthHOC(Dashboard);
-
-export const Heading = ({ title }: { title: string }) => (
-  <h2
-    style={{
-      fontWeight: 500,
-      fontSize: "16px",
-      margin: 0,
-      paddingBottom: "16px",
-    }}
-  >
-    {title}
-  </h2>
-);

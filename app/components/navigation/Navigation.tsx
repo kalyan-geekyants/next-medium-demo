@@ -23,10 +23,8 @@ import { ReactNode, useState } from "react";
 import LoginModal from "../login";
 import Compose from "../compose/Compose";
 import { useGlobalContext } from "@/app/context/store";
-// import Link from 'next/link';
 import styles from "./Navigation.module.css";
 import { useRouter } from "next/navigation";
-// import SampleModal from '../login/SampleModal';
 import { blogs } from "../../../data/data.json";
 
 const Navigation = () => {

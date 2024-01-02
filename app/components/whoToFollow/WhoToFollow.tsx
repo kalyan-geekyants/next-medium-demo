@@ -2,10 +2,12 @@ import { Box } from "@gluestack-ui/themed";
 import styles from "./WhoToFollow.module.css";
 import { WhoToFollow, WhoToFollowProps } from "@/app/types/globalTypes";
 import WhoToFollowCard from "./WhoToFollowCard";
+import Heading from "../Heading";
 
 const WhoToFollow = ({ whoToFollow }: WhoToFollowProps) => {
   return (
-    <Box>
+    <Box mt={42}>
+      <Heading title="Who to follow" />
       {whoToFollow.map((profile: WhoToFollow, index: number) => (
         <WhoToFollowCard
           key={index}

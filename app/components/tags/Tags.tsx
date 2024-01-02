@@ -3,6 +3,7 @@ import { Box } from "@gluestack-ui/themed";
 import styles from "./Tags.module.css";
 import { useGlobalContext } from "@/app/context/store";
 import { blogs } from "../../../data/data.json";
+import Heading from "../Heading";
 
 const Tags = ({ tags }: { tags: any }) => {
   const { setBlogs } = useGlobalContext();
@@ -11,7 +12,8 @@ const Tags = ({ tags }: { tags: any }) => {
     setBlogs(filteredBlogs);
   };
   return (
-    <Box>
+    <Box mt={42}>
+      <Heading title="Recommended Topics" />
       <Box display="flex" flexDirection="row" flexWrap="wrap">
         {tags.map((tag: string, index: number) => (
           <div

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from "react";
 import {
   ButtonText,
   CloseIcon,
@@ -17,20 +17,33 @@ import {
   InputField,
   Input,
   FormControl,
-} from '@gluestack-ui/themed';
-import { useGlobalContext } from '@/app/context/store';
+} from "@gluestack-ui/themed";
+import { useGlobalContext } from "@/app/context/store";
+import { Controller, useForm } from "react-hook-form";
 interface Props {
   showModal: boolean;
   setShowModal: (showModal: boolean) => void;
 }
 
-const LoginModal = ({ showModal, setShowModal }: Props) => {
-  const [userName, setUserName] = useState('');
-  const { setUserID } = useGlobalContext();
+type AuthSchemaType = {
+  userName: string;
+};
 
-  const handleSubmission = () => {
-    localStorage.setItem('userID', userName);
-    setUserID(userName);
+const LoginModal = ({ showModal, setShowModal }: Props) => {
+  const { setUserID } = useGlobalContext();
+  const {
+    control,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm<AuthSchemaType>({
+    defaultValues: {
+      userName: "",
+    },
+  });
+
+  const onSubmit = (data: AuthSchemaType) => {
+    localStorage.setItem("userID", data.userName);
+    setUserID(data.userName);
     setShowModal(false);
   };
   return (
@@ -53,36 +66,43 @@ const LoginModal = ({ showModal, setShowModal }: Props) => {
             Join Medium.
           </Heading>
           <FormControl>
-            <Input
-              variant="outline"
-              size="lg"
-              isDisabled={false}
-              isInvalid={false}
-              isReadOnly={false}
-              isRequired={true}
-              mt={30}
-              borderRadius={'$full'}
-            >
-              <InputField
-                placeholder="User name"
-                value={userName}
-                onChange={(e: any) => setUserName(e.target.value)}
-              />
-            </Input>
-            <FormControlError>
-              <FormControlErrorText>
-                At least 6 characters are required.
-              </FormControlErrorText>
-            </FormControlError>
+            <Controller
+              name="userName"
+              control={control}
+              rules={{
+                required: { value: true, message: "username is required" },
+                minLength: {
+                  value: 3,
+                  message: "username must be at least 3 characters",
+                },
+              }}
+              render={({ field: { onChange, onBlur, value } }) => (
+                <Input
+                  variant="outline"
+                  size="lg"
+                  mt={30}
+                  borderRadius={"$full"}
+                >
+                  <InputField
+                    placeholder="User name"
+                    value={value}
+                    onChangeText={onChange}
+                    value={value}
+                    onBlur={onBlur}
+                  />
+                </Input>
+              )}
+            />
+
             <Button
               variant="solid"
               bgColor="#000"
               action="secondary"
               mt={10}
               size="lg"
-              borderRadius={'$full'}
-              isDisabled={userName.length < 4}
-              onPress={handleSubmission}
+              borderRadius={"$full"}
+              isDisabled={isSubmitting}
+              onPress={handleSubmit(onSubmit)}
             >
               <ButtonText color="#fff">Login</ButtonText>
             </Button>
